@@ -17,9 +17,9 @@ struct ContentView: View {
         
             Button(action:{
                 print( "You pressed the button")
-            }){Text("Play")}
+            }){Text("Play")}.padding( 10).border(Color.blue, width: 1).background(Color.blue).foregroundColor(.white)
             Spacer()
-        }
+        }.padding(10)
         
     }
 }
