@@ -19,6 +19,7 @@ struct ContentView: View {
     @State private var currentGuessedNumber: Int? = nil
     @State private var isPlaying: Bool = false
     @State private var finalMessage: String = ""
+    @State private var hasEnded :Bool = false
     
     
     // function to start the game
@@ -30,6 +31,40 @@ struct ContentView: View {
         isPlaying = true
         finalMessage = "Current Number: \(currentGuessedNumber ?? 0) in number of tries: \(currentGuessTries)"
     }
+    // function to update the currentGuessed number
+    func updateGuess(){
+        // making sure program is still in the range
+        if lowBound <= highBound{
+            currentGuessTries += 1
+            currentGuessedNumber = (highBound + lowBound) / 2
+            finalMessage = "Current Number: \(currentGuessedNumber ?? 0) in number of tries: \(currentGuessTries)"
+        }else{
+            finalMessage = "I lost, I did not guess the number in \(currentGuessTries) tries"
+            isPlaying = false
+        }
+    }
+    
+    // function to low and higher
+    func lowerButtonPressed(){
+        if let guess = currentGuessedNumber{
+            highBound = guess - 1
+            updateGuess()
+        }
+    }
+    
+    func higherButtonPressed(){
+        if let guess = currentGuessedNumber{
+            lowBound = guess + 1
+            updateGuess()
+        }
+    }
+    func correctGuess(){
+        finalMessage = "I guessed the number in \(currentGuessTries) tries"
+        hasEnded = true
+        isPlaying = false
+        
+    }
+    
     var body: some View {
         
         VStack (alignment: .leading, spacing: 16){
