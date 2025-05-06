@@ -14,7 +14,10 @@ struct ContentView: View {
             
             Text("Welcome, ").foregroundStyle(.blue).fontWeight(.bold).font(.title).fontDesign(.monospaced).padding(11)
             Text("I am guessRight, I use the binary search algorithm to guess the integer number you pick between 0 and 50, in up to 6 tries. up to the challenge ?").padding(.top, 5).padding(.bottom, 5).padding(.leading, 10).padding(.trailing, 10)
-          
+        
+            Button(action:{
+                print( "You pressed the button")
+            }){Text("Play")}
             Spacer()
         }
         
