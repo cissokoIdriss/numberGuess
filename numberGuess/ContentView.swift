@@ -10,14 +10,26 @@ import SwiftUI
 
 
 
+
 struct ContentView: View {
     // Defining the overall variable using state
-    @State private var currentGuess : Int = 0
+    @State private var currentGuessTries : Int = 0
     @State private var lowBound : Int = 0 // will be used as the basic of the binary search implementation
     @State private var highBound : Int = 50 // will be used as a higbound of the binary search
     @State private var currentGuessedNumber: Int? = nil
     @State private var isPlaying: Bool = false
     @State private var finalMessage: String = ""
+    
+    
+    // function to start the game
+    func initGame(){
+        currentGuessedNumber = (highBound + lowBound) / 2
+        currentGuessTries += 1
+        lowBound = 0
+        highBound = 50
+        isPlaying = true
+        finalMessage = "Current Number: \(currentGuessedNumber ?? 0) in number of tries: \(currentGuessTries)"
+    }
     var body: some View {
         
         VStack (alignment: .leading, spacing: 16){
